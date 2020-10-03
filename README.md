@@ -24,6 +24,10 @@ C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worl
 10. Remove the `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db` files and rename `actors.db2`, `items.db2`, `journal.db2`, `scenes.db2` and `tables.db2` to `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`.
 11. Overwrite the database files in the worlds data/ folder with the newly created databases (`actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`).
 
+### Cleanup
+
+12. Run `remove_empty_folders.py` with the world's root folder as argument. 
+
 Done.
 
 ### Todo
@@ -36,7 +40,6 @@ Done.
 ### Do Maybe
 - .mp3, .flac to opus .ogg?
 - Animated .gif to .webm?
-- Remove (then) empty folders
 - Scan DBs for unused media files and list them (maybe delete aswell?)
 - Merge into one file
 
