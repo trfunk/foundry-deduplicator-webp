@@ -1,6 +1,6 @@
 # foundry-deduplicator-webp (DATA LOSS/CORRUPTION VERY POSSIBLE, HAVE BACKUPS, HANDLE WITH CARE)
 
-Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal .png links to .webp. Tested with exactly one world (lmao) on Foundry 0.6.6. Uses pathlib so needs modern python (I think atleast 3.4, but 3.8 is probably safer). 
+Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal .png links to .webp. Tested with exactly one world (lmao) on Foundry 0.6.6. Uses pathlib so needs modern python (I think atleast 3.4, but 3.8 is probably safer). Unsure how/if it deals with symlinks.
 
 ## Usage
 ### Deduplication
@@ -13,7 +13,7 @@ C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worl
 ```
 3. Copy the `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db` of the world into the folder the scripts are in.
 4. Fix any hardcoded shit [like the worlds root folder](../main/rewrite_and_remove.py#L34-L35), [twice](../main/rewrite_and_remove.py#L56).
-5. Run `rewrite_and_remove.py`, it takes the previous created `dedup.txt` as input.
+5. Run `rewrite_and_remove.py` with `dedup.txt` as argument.
 6. Remove the `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db` files and rename `actors.db2`, `items.db2`, `journal.db2`, `scenes.db2` and `tables.db2` to `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`.
 7. Overwrite the database files in the worlds data/ folder with the newly created databases (`actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`).
 
