@@ -13,10 +13,6 @@ import pathlib
 import posixpath
 import sys
 
-def fix_and_delete(dedup_file):								# useless function, dedup.txt is hardcoded
-	parse(dedup_file)
-	return
-
 def fix_db(db, duplicates):								# rewrites the img references to the non duplicates we won't delete
 	output = db + '2'
 	with open(db, "r", encoding="utf8", newline='\n') as input_db:
@@ -35,9 +31,9 @@ def fix_format(line):
 	duplicate = duplicate.rpartition('bgdia/')[-1]					# everything that isn't relative to the world's root folder
 	return filename, duplicate
 
-def parse(dedup_file):
+def fix_and_delete(dedup_file):
 	duplicates = defaultdict(list)							# slapping all the paths into a dictonary with the 'chosen' original file as key
-	with open('dedup.txt', 'r') as file_object:					# and all others as values : {filename: {duplicate1, duplicate2}, ...}
+	with open(dedup_file, 'r') as file_object:					# and all others as values : {filename: {duplicate1, duplicate2}, ...}
 		for cnt, line in enumerate(file_object):
 			filename, duplicate = fix_format(line.rstrip())			# remove newlines
 			duplicates[duplicate].append(filename)
@@ -59,8 +55,7 @@ def remove_duplicates(duplicates):
 
 if __name__ == "__main__":
 	print("current working dir: " + os.getcwd())
-	fix_and_delete("a")								#Argument doesn't actually do shit, maybe fix
-    #if sys.argv[1:]:
-    #    fix_and_delete(sys.argv[1:])
-    #else:
-    #    print("Please pass the file with the deduplication paths.")
+    if sys.argv[1]:
+        fix_and_delete(sys.argv[1])
+    else:
+        print("Please pass the file with the deduplication paths.")
