@@ -41,7 +41,8 @@ Done.
 - Merge into one file
 
 ### Thanks
-- Stackoverflow (https://stackoverflow.com/a/38514560, https://stackoverflow.com/a/36113168 in particular)
 - VanCole for his [macros](https://github.com/VanceCole/macros)
+- Stackoverflow (https://stackoverflow.com/a/38514560, https://stackoverflow.com/a/36113168, https://stackoverflow.com/a/23488980)
+
 
 
