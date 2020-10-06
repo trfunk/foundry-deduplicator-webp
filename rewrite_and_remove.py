@@ -57,13 +57,13 @@ def fix_and_delete(dedup_file):
             filename, duplicate = fix_format(line.rstrip())
             # remove newlines
             duplicates[duplicate].append(filename)
-        #fix_db('actors.db', duplicates)
-        #fix_db('items.db', duplicates)
-        #fix_db('journal.db', duplicates)
-        #fix_db('scenes.db', duplicates)
-        #fix_db('tables.db', duplicates)
-        #print('Fixed DBs')
-        #remove_duplicates(duplicates)
+        fix_db('actors.db', duplicates)
+        fix_db('items.db', duplicates)
+        fix_db('journal.db', duplicates)
+        fix_db('scenes.db', duplicates)
+        fix_db('tables.db', duplicates)
+        print('Fixed DBs')
+        remove_duplicates(duplicates)
 
 
 def remove_duplicates(duplicates):
