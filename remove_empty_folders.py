@@ -5,16 +5,19 @@
 import os
 import sys
 
+
 def remove_empty_dir(path):
     try:
         os.rmdir(path)
     except OSError:
         pass
 
+
 def remove_empty_dirs(path):
     for root, dirnames, filenames in os.walk(path, topdown=False):
         for dirname in dirnames:
             remove_empty_dir(os.path.realpath(os.path.join(root, dirname)))
+
 
 if __name__ == "__main__":
     if sys.argv[1]:

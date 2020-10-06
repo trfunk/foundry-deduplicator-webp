@@ -79,7 +79,7 @@ def check_for_duplicates(paths, hash=hashlib.sha1):
                 full_hash = get_hash(filename, first_chunk_only=False)
                 duplicate = hashes_full.get(full_hash)
                 if duplicate:
-                    with open('dedup.txt', 'a') as output:
+                    with open('dedup.txt', 'a', encoding='utf8') as output:
                         output.write("{},{}\n".format(filename, duplicate))
                 else:
                     hashes_full[full_hash] = filename
