@@ -2,8 +2,8 @@
 
 Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal .png links to .webp. Tested with exactly one world (lmao) on Foundry 0.6.6. Uses pathlib so needs modern python (I think atleast 3.4, but 3.8 is probably safer). Unsure how/if it deals with symlinks.
 
-## Usage
-### Deduplication
+## Usage (Not up to date)
+### Deduplication 
 1. Place all the scripts one folder above the world you want to torment.
 2. Run `duplicates.py` with the worlds root folder as argument. This will create a textfile called `dedup.txt` with original filename and duplicates listed as absolute paths:
 ```
