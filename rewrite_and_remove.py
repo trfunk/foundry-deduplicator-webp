@@ -20,7 +20,7 @@ def fix_db(db, duplicates):
     # remove hardcoded mess
     output_filepath = pathlib.Path("bgdia/data/", db + '2')
     with open(input_filepath, "r", encoding="utf8", newline='\n') as input_db:
-        with open(output, "w", encoding="utf8", newline='\n') as output_db:
+        with open(output_filepath, "w", encoding="utf8", newline='\n') as output_db:
             data = input_db.read()
             for filename, lists in duplicates.items():
                 for duplicate in lists:
@@ -41,11 +41,10 @@ def fix_format(line):
 
 def fix_path(path):
     path = os.path.relpath(path)
-	# replace the windows seperator with the linux one
+    # replace the windows seperator with the linux one
     path = path.replace(os.sep, posixpath.sep)
     path = path.partition('/')[-1]
     return path
-
 
 
 def fix_and_delete(dedup_file):
