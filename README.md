@@ -1,6 +1,6 @@
 # foundry-deduplicator-webp (DATA LOSS/CORRUPTION VERY POSSIBLE, HAVE BACKUPS, HANDLE WITH CARE)
 
-Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal .png links to .webp. Tested with exactly one world (lmao) on Foundry 0.6.6. Uses pathlib so needs modern python (I think atleast 3.4, but 3.8 is probably safer). Unsure how/if it deals with symlinks.
+Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal .png links to .webp. Tested with exactly one world (lmao) on Foundry 0.6.6. Uses pathlib so needs modern python (I think atleast 3.4, but 3.8 is probably safer). Unsure how/if it deals with symlinks. Only tested on Win 10.
 
 ## Usage (Not up to date)
 ### Deduplication 
