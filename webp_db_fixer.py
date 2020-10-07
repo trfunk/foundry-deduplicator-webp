@@ -8,30 +8,51 @@ import glob
 import os
 import pathlib
 import posixpath
+import sys
 
 
-def fix_db(db, replacement):  
-    # rewriting all .png links to .webp links
-    output = db + '2'
-    with open(db, "r", encoding="utf8", newline='\n') as input_db:
-        with open(output, "w", encoding="utf8", newline='\n') as output_db:
+def fix_db(db, replacement):
+    input_filepath = pathlib.Path("bgdia/data/", db + '2')
+    output_filepath = pathlib.Path("bgdia/data/", db + '3')
+    with open(input_filepath, "r", encoding="utf8", newline='\n') as input_db:
+        with open(output_filepath, "w", encoding="utf8", newline='\n') as output_db:
             data = input_db.read()
-            data = data.replace(png, webp)
+            for original, webp in replacement.items():
+                data = data.replace(original, webp)
             # catching Tokenwildcards
             data = data.replace("*.png", "*.webp")
+            data = data.replace("*.jpg", "*.webp")
+            data = data.replace("*.jpeg", "*.webp")
             output_db.write(data)
 
 
-def find_pngs():
-    replacement = {}
+def find_pngs(path, replacement):
     # find all .pngs (while traversing subdirectories)
-    for file in glob.glob("**/*.png", recursive=True):
-    	# convert to linux path
-        file = file.replace(os.sep, posixpath.sep)  
+    for file in glob.glob(path + '/**/*.png', recursive=True):
+        # convert to linux path
+        file = file.replace(os.sep, posixpath.sep)
         # slice the worlds root folder off
         file = file.split('/', 1)[-1]
         # create dictonary with the path to the png as key and the path to the webp as value
         replacement[file] = file.replace('.png', '.webp')
+
+
+def find_jpgs(path, replacement):
+    for file in glob.glob(path + '/**/*.jpg', recursive=True):
+        file = file.replace(os.sep, posixpath.sep)
+        file = file.split('/', 1)[-1]
+        replacement[file] = file.replace('.jpg', '.webp')
+    # jpegs aswell
+    for file in glob.glob(path + '/**/*.jpeg', recursive=True):
+        file = file.replace(os.sep, posixpath.sep)
+        file = file.split('/', 1)[-1]
+        replacement[file] = file.replace('.jpeg', '.webp')
+
+
+def fix(path):
+    replacement = {}
+    find_pngs(path, replacement)
+    find_jpgs(path, replacement)
     fix_db('actors.db', replacement)
     fix_db('items.db', replacement)
     fix_db('journal.db', replacement)
@@ -49,5 +70,7 @@ def remove_duplicates(replacement):
 
 
 if __name__ == "__main__":
-    print("current working dir: " + os.getcwd())
-    find_pngs()
+    if sys.argv[1]:
+        fix(sys.argv[1])
+    else:
+        print("Please pass the path to check as parameter to the script")
