@@ -1,6 +1,6 @@
 # This script is hardcoded for BG:DiA! You need to change it for other worlds
 # You need to convert the pngs to webps (both need to be present) before running this
-# It expects to sit one folder above the module
+# It expects to sit one folder above the module, takes the world's root folder as argument
 # The dbs need to be copied to the folder the script is to prevent data loss
 # Partly stolen from https://stackoverflow.com/a/38514560
 

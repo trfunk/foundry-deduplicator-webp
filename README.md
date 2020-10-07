@@ -1,9 +1,17 @@
 # foundry-deduplicator-webp (DATA LOSS/CORRUPTION VERY POSSIBLE, HAVE BACKUPS, HANDLE WITH CARE)
 
-Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal .png links to .webp. Tested with exactly one world (lmao) on Foundry 0.6.6. Uses pathlib so needs modern python (I think atleast 3.4, but 3.8 is probably safer). Unsure how/if it deals with symlinks. Only tested on Win 10.
+Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal `.jpeg`, `.jpg` and `.png` files to `.webp`. Unsure how/if it deals with symlinks and/or Unicode characters. **Use at your own risk.**
+
+**Tested on/with:** 
+- Exactly one world (lmao)
+- Foundry 0.6.6. 
+- Python 3.8
+- Win 10 x64 
 
 ## Usage (Not up to date)
-### Deduplication 
+0. **Make a backup!!**
+
+### Deduplication (Will delete duplicates)
 1. Place all the scripts one folder above the world you want to torment.
 2. Run `duplicates.py` with the worlds root folder as argument. This will create a textfile called `dedup.txt` with original filename and duplicates listed as absolute paths:
 ```
@@ -11,30 +19,26 @@ C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worl
 C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worlds\bgdia\token\img124.png
                         ^ the scripts are in the world folder, bgdia folder is the argument
 ```
-3. Copy the `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db` of the world into the folder the scripts are in.
-4. Fix any hardcoded shit [like the worlds root folder](../main/rewrite_and_remove.py#L34-L35), [twice](../main/rewrite_and_remove.py#L56).
-5. Run `rewrite_and_remove.py` with `dedup.txt` as argument.
-6. Remove the `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db` files and rename `actors.db2`, `items.db2`, `journal.db2`, `scenes.db2` and `tables.db2` to `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`.
-7. Overwrite the database files in the worlds data/ folder with the newly created databases (`actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`).
+3. Fix any hardcoded shit [like the worlds root folder](../main/rewrite_and_remove.py#L19-L21), [twice](../main/rewrite_and_remove.py#L72).
+4. Run `rewrite_and_remove.py` with `dedup.txt` as argument.
+5. If you don't want to convert the images to webp, go to the `data/` folder and rename any `.db2` files to `.db`. Overwrite if needed. Else skip this step.
 
-### Webp rewriting
-
-8. Use [VanceCole's bulk-convert-to-webp.ps1 powershell script](https://github.com/VanceCole/macros/blob/main/imagemagick/bulk-convert-to-webp.ps1) to convert all .png files to .webp (converts .gifs and .jpgs aswell, but the script won't touch these)
-9. Fix some hardcoded shit like the [world's root folder name](https://github.com/trfunk/foundry-deduplicator-webp/blob/fc9ee3a315bc87fc1a5319e030cd0d9df0ee55d1/webp_db_fixer.py#L39) and run it. It again assumes the foundry .dbs (`actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`) to be in the same folder as the scripts
-10. Remove the `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db` files and rename `actors.db2`, `items.db2`, `journal.db2`, `scenes.db2` and `tables.db2` to `actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`.
-11. Overwrite the database files in the worlds data/ folder with the newly created databases (`actors.db`, `items.db`, `journal.db`, `scenes.db` and `tables.db`).
+### Webp rewriting (Will delete any .png, .jpg and .jpeg)
+6. Use [VanceCole's bulk-convert-to-webp.ps1 powershell script](https://github.com/VanceCole/macros/blob/main/imagemagick/bulk-convert-to-webp.ps1) to convert all `.png` files to `.webp` (converts `.jpegs`, `.jpgs` and `.gifs` aswell). **Make sure this step is finished and worked before you continue with step 7. Else your world will be corrupted.**
+7. Fix some hardcoded shit like the [world's root folder name](../main/webp_db_fixer.py#L15-16), ([twice](../main/webp_db_fixer.py#L15-16)). If you renamed the the `.db2` files to `.db` you will have to either rename them back, or [change the script](../main/webp_db_fixer.py#L15-16).
+8. Run `webp_db_fixer.py` with the world's root folder as argument. The script will only rewrite and delete `.jpeg`, `.jpg` and `.png` files to `.webp`, since it doesn't deal with animated gifs yet.  
+9. Go to the `data/` folder and rename any `.db3` files to `.db`. Overwrite if needed. Can remove all `.db2` files.
 
 ### Cleanup
-
-12. Run `remove_empty_folders.py` with the world's root folder as argument. 
+10. Run `remove_empty_folders.py` with the world's root folder as argument. 
 
 Done.
 
 ### Todo
 - Fix the horrible hardcoded mess.
-- `duplicate.py` probably horrible explodes dealing with non ascii letters?
+- ~~`duplicate.py` probably horrible explodes dealing with non ascii letters?~~
 - Make the db workflow less tedious
-- Take on .gifs, .jpgs, etc aswell
+- ~~Take on .gifs, .jpgs, etc aswell~~
 - Integrate .webp conversation
 
 ### Do Maybe
