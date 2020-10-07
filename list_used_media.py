@@ -20,7 +20,7 @@ def search_db(db, media, images, thumbs):
             if 'thumb' in data:
                 thumbs[data["thumb"]].append(data["name"])
             if 'sounds' in data:
-            # scenes.db also has sounds as a key, but no paths in there
+                # scenes.db also has sounds as a key, but no paths in there
                 try:
                     media[data["sounds"][0]["path"]].append(data["name"])
                 except IndexError:
