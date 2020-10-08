@@ -5,7 +5,7 @@ Collection of horrible python scripts I hacked together to deduplicate files in 
 **Tested on/with:** 
 - Exactly one world (lmao)
 - Foundry 0.6.6. 
-- Python 3.8
+- Python 3.9, 3.8.1
 - Win 10 x64 
 
 ## Usage (Not up to date)
@@ -28,22 +28,20 @@ C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worl
 7. Fix some hardcoded shit like the [world's root folder name](../main/webp_db_fixer.py#L15-16), ([twice](../main/webp_db_fixer.py#L15-16)). If you renamed the the `.db2` files to `.db` you will have to either rename them back, or [change the script](../main/webp_db_fixer.py#L15-16).
 8. Run `webp_db_fixer.py` with the world's root folder as argument. The script will only rewrite and delete `.jpeg`, `.jpg` and `.png` files to `.webp`, since it doesn't deal with animated gifs yet.  
 9. Go to the `data/` folder and rename any `.db3` files to `.db`. Overwrite if needed. Can remove all `.db2` files.
+10. Edit `world.json` in the world's root folder and rewrite the background value from `.png` to `.webp`.
 
 ### Cleanup
-10. Run `remove_empty_folders.py` with the world's root folder as argument. 
+11. Run `remove_empty_folders.py` with the world's root folder as argument. 
 
 Done.
 
 ### Todo
 - Fix the horrible hardcoded mess.
-- ~~`duplicate.py` probably horrible explodes dealing with non ascii letters?~~
-- Make the db workflow less tedious
-- ~~Take on .gifs, .jpgs, etc aswell~~
 - Integrate .webp conversation
 
 ### Do Maybe
 - .mp3, .flac to opus .ogg?
-- Animated .gif to .webm?
+- Animated .gif to .webm? (And deal with gifs in general)
 - Scan DBs for unused media files and list them (maybe delete aswell?)
 - Merge into one file
 
