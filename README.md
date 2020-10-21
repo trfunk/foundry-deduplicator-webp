@@ -3,12 +3,12 @@
 Collection of horrible python scripts I hacked together to deduplicate files in a foundry world, delete the duplicates and rewrite the foundry databases so the world doesn't break. Optional script to rewrite all the internal `.jpeg`, `.jpg` and `.png` files to `.webp`. Unsure how/if it deals with symlinks and/or Unicode characters. **Use at your own risk.**
 
 **Tested on/with:** 
-- Exactly one world (lmao)
+- BG:DiA, CoS, DIP
 - Foundry 0.6.6. 
 - Python 3.9, 3.8.1
 - Win 10 x64 
 
-## Usage (Not up to date)
+## Usage
 0. **Make a backup!!**
 
 ### Deduplication (Will delete duplicates)
