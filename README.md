@@ -36,6 +36,18 @@ C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worl
 
 Done.
 
+## Example
+
+```
+duplicates.py bgdia/
+rewrite_and_remove.py dedup.txt
+bulk-convert-to-webp.ps1
+webp_db_fixer.py bgdia/
+remove_empty_folders.py bgdia/
+list_used_media.py > usedmedia.txt
+```
+Make sure to rename the `.db3` files afterwards and edit `world.json`. 
+
 ### Todo
 - Fix the horrible hardcoded mess.
 - Integrate .webp conversation
