@@ -1,8 +1,7 @@
 # Hardcoded for BG:DiA, need to change stuff for other worlds
 # Expects to sit one folder above the root folder of the world
 # Directly edits the dbs, data corruption possible!
-# Need to pass a plain text encoded textfile as argument.
-# Expects .dbs in the same folder as the script.
+# Need to pass a textfile as argument.
 # Tags empty files as duplicates
 # Deletes duplicate files
 
