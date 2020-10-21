@@ -24,7 +24,7 @@ C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worl
 5. If you don't want to convert the images to webp, go to the `data/` folder and rename any `.db2` files to `.db`. Overwrite if needed. Else skip this step.
 
 ### Webp rewriting (Will delete any .png, .jpg and .jpeg)
-6. Use [VanceCole's bulk-convert-to-webp.ps1 powershell script](https://github.com/VanceCole/macros/blob/main/imagemagick/bulk-convert-to-webp.ps1) to convert all `.png` files to `.webp` (converts `.jpegs`, `.jpgs` and `.gifs` aswell). **Make sure this step is finished and worked before you continue with step 7. Else your world will be corrupted.**
+6. Use [VanceCole's bulk-convert-to-webp.ps1 powershell script](https://github.com/VanceCole/macros/blob/master/imagemagick/bulk-convert-to-webp.ps1) to convert all `.png` files to `.webp` (converts `.jpegs`, `.jpgs` and `.gifs` aswell). **Make sure this step is finished and worked before you continue with step 7. Else your world will be corrupted.**
 7. Fix some hardcoded shit like the [world's root folder name](../main/webp_db_fixer.py#L15-16), ([twice](../main/webp_db_fixer.py#L15-16)). If you renamed the the `.db2` files to `.db` you will have to either rename them back, or [change the script](../main/webp_db_fixer.py#L15-16).
 8. Run `webp_db_fixer.py` with the world's root folder as argument. The script will only rewrite and delete `.jpeg`, `.jpg` and `.png` files to `.webp`, since it doesn't deal with animated gifs yet.  
 9. Go to the `data/` folder and rename any `.db3` files to `.db`. Overwrite if needed. Can remove all `.db2` files.
