@@ -32,6 +32,7 @@ C:\Users\trfunk\Desktop\worlds\bgdia\token\img1.png,C:\Users\trfunk\Desktop\worl
 
 ### Cleanup
 11. Run `remove_empty_folders.py` with the world's root folder as argument. 
+12. Before running this again, make sure to remove `dedup.txt` since `duplicates.py` will just append the duplicate files at the end of the file - resulting in unintended behaviour.
 
 Done.
 
